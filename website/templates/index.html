@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+<body>
+<h1>name,{{user.name}}</h1>
+<h1>age ,{{user.age}}</h1>
+<h1>sex ,{{user.sex}}</h1>
+<h1>say,{{user.say}}</h1>
+{% if user.age < 18 %}
+	<li>未成年</li>
+{% else %}
+	<li>成年</li>
+{%endif%}
+{% if not usr1 %}
+	<li>不存在</h1>
+{%endif%}
+{% if not user.name %}
+	<li>name 为空</li>
+{%endif%}
+
+{% for book in book_list %}
+	<li>{{book}}</li>
+{%endfor%}
+
+{% for book in book_list reversed %}
+	<li>{{book}}</li>
+{%endfor%}
+
+
+{% for book in book_list %}
+		<li>{{book}}</li>
+
+		{%empty%}
+			<li>没有书籍</li>
+{%endfor%}
+
+
+{% if book_list %}
+	{% for book in book_list reversed %}
+        {% if forloop.first %}
+            <hi>begin</hi>
+        {% endif %}
+
+		<li>{{book}}</li>
+
+        {{ forloop.last }}
+        <li>forloop.counter:{{forloop.counter}}</li>
+        <li>forloop.counter0:{{forloop.counter0}}</li>
+        <li>forloop.revcounter:{{forloop.revcounter}}</li>
+        <li>forloop.revcounter0:{{forloop.revcounter0}}</li>
+        {% if forloop.last %}
+            <hi>end</hi>
+        {% endif %}
+    {% endfor %}
+{%  else %}
+<li>没有书籍</li>
+{% endif %}
+
+<h1>{{book_list.0}}</h1>
+<h1>{{book_list.1}}</h1>
+<h1>{{book_list.2}}</h1>
+<h1>{{book_list.3}}</h1>
+
+
+
+{% for book in book_list %}
+		<hi>{{book | upper}}</hi>
+
+		{%empty%}
+			<li>没有书籍</li>
+{%endfor%}
+{% for book in book_list %}
+		<h1>{{book | capfirst}}</h1>
+
+		{%empty%}
+			<li>没有书籍</li>
+
+{%endfor%}
+{% load percent %}
+<li>to day is {{ today | date:'y-m-d' | percent}}</li>
+
+</body>
+</html>
