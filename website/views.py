@@ -2,6 +2,7 @@ from django.shortcuts import render
 from  django.http import HttpResponse
 from  django.template import  loader,Context
 import  datetime
+from website.models import Student
 # Create your views here.
 
 class Person(object):
@@ -34,3 +35,10 @@ def bar(request,id,name):
     t=loader.get_template("time.html")
     c=Context({"today":datetime.datetime.now(),'id':id,'name':name})
     return  HttpResponse(t.render(c))
+
+def student_list(request):
+    t=loader.get_template("studentlist.html")
+    studentlist=Student.objects.all().order_by("age")
+    c=Context({"studentlist":studentlist})
+    return  HttpResponse(t.render(c))
+
